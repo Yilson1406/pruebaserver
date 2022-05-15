@@ -20,7 +20,7 @@ app.get('/api/users', (request, response) => {
     response.json(users)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`El servidor está levantado en el puerto ${PORT}`) 
 })
