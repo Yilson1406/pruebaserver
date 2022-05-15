@@ -6,7 +6,7 @@ const cors = require('cors');
 //const { dbConnection } = require('./db/config');
 
 const rutas = require('./routes/rutas');
-//const auth = require('./auth/auth');
+const auth = require('./auth/auth');
 
 // millwared para recibir datos json y por url
 app.use(express.json());
@@ -16,7 +16,7 @@ app.use(cors())
 
 
 app.use('/api/monitoreo',rutas);
-//app.use('/api/auth',auth);
+app.use('/api/auth',auth);
 //conexion a base de datos
 
 mongoose.connect(config.get('configDB.HOST'),{useNewUrlParser:true, useUnifiedTopology: true})
