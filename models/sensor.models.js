@@ -13,8 +13,9 @@ const sensores = new mongoose.Schema({
     },
 
     fecha:{
-        type:String,
-        required:true
+        type:Date,
+        default: new Date()
+        
     }
 });
 
