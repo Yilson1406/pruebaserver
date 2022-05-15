@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+//const { dbConnection } = require('./db/config');
 
 let users = [
     {
@@ -11,7 +12,7 @@ let users = [
       user: 'Agustina',
     },
 ]
-
+//dbConnection();
 app.get('/', (request, response) => {
     response.send('<h1>Servidor con express</h1>')
 })
