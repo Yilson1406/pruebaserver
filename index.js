@@ -2,26 +2,21 @@ const express = require('express')
 const app = express()
 const  mongoose  = require('mongoose')
 const config = require('config');
+const cors = require('cors');
 //const { dbConnection } = require('./db/config');
 
-let users = [
-    {
-      id: 1,
-      user: 'Juan',
-    },
-    {
-      id: 2,
-      user: 'Agustina',
-    },
-]
-//dbConnection();
-app.get('/', (request, response) => {
-    response.send('<h1>Servidor con express</h1>')
-})
+const rutas = require('./routes/rutas');
+//const auth = require('./auth/auth');
 
-app.get('/api/users', (request, response) => {
-    response.json(users)
-})
+// millwared para recibir datos json y por url
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+app.use(cors())
+
+
+app.use('/api/monitoreo',rutas);
+//app.use('/api/auth',auth);
 //conexion a base de datos
 
 mongoose.connect(config.get('configDB.HOST'),{useNewUrlParser:true, useUnifiedTopology: true})
