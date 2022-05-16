@@ -38,27 +38,30 @@ rutas.post('/',(req, res)=>{
 });
 
 rutas.post('/register',(req, res)=>{
+//    res.json(req.body)
 
     Usuario.findOne({cedula:req.body.cedula}).then(user=>{
         if (!user) {
-            adduser(req.body).then(()=>{
+            // res.json(req.body)
+            adduser(req.body)
+            .then(()=>{
                 res.status(200).json({
                     msg:"Usuario Agregado con Exito"
                 })
             }).catch(error=>{
-                res.status(400).json({
+                res.status(401).json({
                     msg:error
                 })
             })
         }
         else{
-            res.status(404).json({
+            res.status(400).json({
                 msg:"El numero de cedula ya se encuentra registrado."
             })
         }
     })
     .catch(error=>{
-        res.status(400).json({
+        res.status(401).json({
             msg:error
         })
     })
@@ -68,13 +71,14 @@ rutas.post('/register',(req, res)=>{
 //f4unction para registrar un nuevo admin
 
 async function adduser(body){
+    // return body
+
     const user = new Usuario({
         nombres:body.nombres,
         cedula:body.cedula,
         email:body.email,
         password:bcrypt.hashSync(body.password, 10)
     });
-
     return user.save();
 }
 
