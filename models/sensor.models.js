@@ -1,4 +1,7 @@
+
+
 const mongoose = require('mongoose');
+
 
 //schema de usuarios
 const sensores = new mongoose.Schema({
@@ -13,8 +16,8 @@ const sensores = new mongoose.Schema({
     },
 
     fecha:{
-        type:Date,
-        default: new Date()
+        type:String,
+        default: new Date().toString()
         
     }
 });

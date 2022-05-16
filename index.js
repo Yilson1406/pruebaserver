@@ -1,3 +1,5 @@
+process.env.TZ = "America/Guayaquil";
+
 const express = require('express')
 const app = express()
 const  mongoose  = require('mongoose')
