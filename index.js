@@ -5,7 +5,9 @@ const app = express()
 const  mongoose  = require('mongoose')
 const config = require('config');
 const cors = require('cors');
-//const { dbConnection } = require('./db/config');
+require('dotenv').config();
+
+const { dbConnection } = require('./db/config');
 
 const rutas = require('./routes/rutas');
 const auth = require('./auth/auth');
@@ -20,7 +22,7 @@ app.use(cors())
 app.use('/api/monitoreo',rutas);
 app.use('/api/auth',auth);
 //conexion a base de datos
-
+// dbConnection();
 mongoose.connect(config.get('configDB.HOST'),{useNewUrlParser:true, useUnifiedTopology: true})
     .then(()=>{
         console.log('Api Conectado a la base de datos con éxito');})
